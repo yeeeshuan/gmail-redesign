@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import Emails from '../../components/email'
+import Folders from '../../components/folder'
 import styles from './page.module.css'
 
 export default function Home() {
@@ -11,10 +12,12 @@ export default function Home() {
 
         </aside>
         <aside className={styles.console}>
-            hello
         </aside>
         <section className={styles.emails}>
             <input className={styles.search} type="text" id="fname" name="fname"/>
+            <div className={styles.folders}>
+              <Folders/>
+            </div>
             <Emails/>
         </section>
     </main>

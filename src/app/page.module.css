@@ -1,5 +1,6 @@
 .main{
   display: flex;
+  background-color: #F6F8FC;
 }
 
 .options{
@@ -53,6 +54,21 @@ input.search{
   background-color: rgb(255, 238, 0);
 }
 
+.add{
+  width: 25px; 
+  padding-top: 3px;
+  padding-bottom: 3px;
+  border: none;
+  border-radius: 50px;
+  transition: 0.3s;
+  align-items: center;
+}
+
+.add:hover{
+  background-color: lightgray;
+  transition: 0.3s; 
+}
+
 p.name{
   padding-right: 120px; 
   padding-left: 10px;
@@ -60,6 +76,35 @@ p.name{
 
 .emails{
   width: 80%; 
-  background-color: white; 
+  background-color: #F6F8FC;
   height: auto;
+}
+
+.folders{
+  display: flex; 
+}
+
+.firstFolder{
+  background-color: #D9D9D9;
+  width: 250px; 
+  height: 60px;
+  text-align: left;
+  padding-left: 1rem;
+  border:none; 
+  border-bottom: 5px solid;
+}
+
+.folder{
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: none; 
+  width: 250px; 
+  height: 60px;
+  text-align: left;
+  padding-left: 1rem;
+}
+
+p.name{
+  padding-left:10px; 
 }
