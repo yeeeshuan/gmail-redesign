@@ -4,9 +4,9 @@ import Image from 'next/image';
 
 function Add(){
     return (
-        <button className={styles.add}>
-            <Image src={add} width={10}/>
-        </button>
+        <div className={styles.add}>
+            <Image src={add} alt="add" width={10}/>
+        </div>
     )
 }
 

@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import styles from '../src/app/page.module.css';
 import inbox from '../public/inbox.png';
-import add from '../public/add.png';
 import Image from 'next/image';
 import Add from './add';
 
@@ -25,11 +24,14 @@ class Folders extends Component{
     }
 
     handleAddClick = () =>{
+        this.props.handleAddActive();
         let store = (this.state.emails);
         store[store.length - 1] =  {type: "P", name:"Primary"};
         store.push({type: "A", name:"Add Email"})
+        this.state.addPressed = true
         this.setState({
-            emails: this.state.emails
+            emails: this.state.emails,
+            addPressed: this.state.addPressed
         })
     }
 
@@ -39,19 +41,19 @@ class Folders extends Component{
                 {this.state.emails.map((email, idx) => {
                     if (idx == this.state.selected){
                         return (
-                            <button className={styles.firstFolder} onClick={() => this.handleClick(idx)}>
-                                <inbox/><p> {email.name} </p>
+                            <button key={idx} className={styles.firstFolder} onClick={() => this.handleClick(idx)}>
+                                 <Image src = {inbox} width = {20} alt = "inbox"/> <p className = {styles.name}> {email.name} </p>
                             </button>
                         )
                     } else if (email.type == "P") {
                         return (
-                            <button className={styles.folder} onClick={() => this.handleAddClick()}>
-                                <Image src = {inbox} width = {20} /> <p className = {styles.name}> {email.name} </p>
+                            <button key={idx} className={styles.folder} onClick={() => this.handleClick(idx)}>
+                                <Image src = {inbox} width = {20} alt = "inbox"/> <p className = {styles.name}> {email.name} </p>
                             </button>
                         )
                     } else if (email.type == "A") {
                         return (
-                            <button className={styles.folder} onClick={() => this.handleAddClick()}>
+                            <button key={idx} className={styles.folder} onClick={() => this.handleAddClick()}>
                                 <Add/> <p className = {styles.name}> {email.name} </p>
                             </button>
                         )
