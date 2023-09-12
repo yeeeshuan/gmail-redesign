@@ -9,18 +9,20 @@ class addFolder extends Component{
 
     render(){
         return(
+            <div>
             <div className={styles.addFolder}>
                 <h1> New Folder </h1>
                 <p> Please enter a new folder name:</p>
-                <input></input>
+                <input className={styles.setFolder}></input>
                 <p> To </p>
-                <input></input>
+                <input className={styles.setFolder}></input>
                 <p> From </p>
-                <input></input>
+                <input className={styles.setFolder}></input>
                 <div className={styles.right}>
-                    <button className={styles.addButton} onClick = {() => this.props.handleAddClose()}> Cancel </button>
-                    <button className={styles.addButton} onClick = {() => this.props.handleAddClose()}> Create </button>
+                    <button className={styles.cancelButton} onClick = {() => this.props.handleAddClose()}> Cancel </button>
+                    <button className={styles.createButton} onClick = {() => this.props.handleAddClose()}> Create </button>
                 </div>
+            </div>
             </div>
         )
     }

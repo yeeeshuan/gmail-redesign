@@ -9,6 +9,11 @@ import AddFolder from '../../components/addFolder'
 
 function Home() {
   const [addPressed, setPressed] = useState(false);
+  const colors = ["#B6CFF5", "#E8DEF8", "#FFD8E4", "#FFE088", "#CEEF85"];
+
+  const handleName = () =>{
+    return "Car Redesign"; 
+  }
 
   const onPress = () => {
     setPressed(true);
@@ -17,7 +22,6 @@ function Home() {
 
   const onClose = () => {
     setPressed(false);
-    console.log(addPressed);
   }
 
     return (
@@ -29,9 +33,9 @@ function Home() {
           <section className={styles.emails}>
               <input className={styles.search} type="text" id="fname" name="fname"/>
               <div className={styles.folders}>
-                <Folders handleAddActive={onPress}/>
+                <Folders handleAddActive={onPress} name = {handleName()} colors = {colors}/>
               </div>
-              {addPressed? <div className = {styles.center}> <AddFolder handleAddClose={onClose}/> </div> : <div/>}
+              {addPressed? <div className = {styles.center}> <AddFolder colors = {colors} handleAddClose={onClose}/> </div> : <div/>}
                 <Emails/>
           </section>
       </main>
