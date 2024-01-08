@@ -15,9 +15,15 @@ class SelectColor extends Component{
         }
 
     }
+
+    handleToggleClick = (event) => {
+        //event.stopPropagation(); // Prevent the click event from propagating to the parent div
+        this.props.selectClick(); // Use the correct prop name and call the function received from props
+    }
+
     render(){
         return (
-            <div className = {styles.chooseColor}>
+            <div onClick = {() => this.handleToggleClick()} className = {styles.chooseColor}>
                 <p>Folder Color</p>
                 <div className={styles.rowColor}>
                 {this.props.colors.map((color, idx) => {
