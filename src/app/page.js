@@ -53,7 +53,17 @@ class Home extends Component{
     {
         console.log(c); 
         let temp = (this.state.emails);
-        temp[temp.length - 2] =  {type: "P", name: "Untitled Folder", color: c};
+        (temp[temp.length - 2]).color = c;
+        this.setState({
+          emails: temp
+      })
+    }
+
+    handleName = (n) =>
+    {
+        console.log(n); 
+        let temp = (this.state.emails);
+        (temp[temp.length - 2]).name = n; 
         this.setState({
           emails: temp
       })
@@ -71,7 +81,7 @@ class Home extends Component{
               <div className={styles.folders}>
                 <Folders handleAddActive={this.onPress} handleAddClick={this.handleAddClick} onPress={this.handleAddClose} colors = {colors} emails = {this.state.emails}/>
               </div>
-              {this.state.addPressed? <div className = {styles.center}> <AddFolder emails = {this.state.emails} colors = {colors} handleColor={this.handleColor} handleAddClose={this.handleAddClose}/> </div> : <div/>}
+              {this.state.addPressed? <div className = {styles.center}> <AddFolder emails = {this.state.emails} colors = {colors} handleColor={this.handleColor} handleName={this.handleName} handleAddClose={this.handleAddClose}/> </div> : <div/>}
                 <Emails/>
           </section>
       </main>

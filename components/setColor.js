@@ -14,6 +14,7 @@ class SetColor extends Component{
                 {this.props.colors.map((color, idx) => {
                         return (
                             <button
+                                onClick = {() => this.props.handleColor(color)}
                                 key = {idx}
                                 style={{
                                 backgroundColor: color,

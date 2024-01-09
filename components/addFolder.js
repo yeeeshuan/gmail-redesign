@@ -13,12 +13,16 @@ class addFolder extends Component{
         }
     }
 
-    handleSetColor = () =>
-    {
+    handleSetColor = () => {
         this.setState({
             show: !this.state.show
         })
     }
+
+    handleInputChange = (e) => {
+        console.log("FUCK ME ");
+        this.props.handleName(e.target.value);
+    };
 
     render(){
         return(
@@ -26,11 +30,11 @@ class addFolder extends Component{
             <div className={styles.addFolder}>
                 <h1> New Folder </h1>
                 <p>Please enter a new folder name:</p>
-                <input className={styles.setFolder}></input>
+                <input onChange={this.handleInputChange} className={styles.setFolder}></input>
                 <p>Folder Color</p>
                 <button className={styles.setColor} onClick = {() => this.handleSetColor()}></button>
                 {(this.state.show) ? (
-                    <div onClick = {() => this.props.handleColor("#E8DEF8")}> <SetColor colors={this.props.colors} emails = {this.props.emails}/></div>
+                    <div> <SetColor handleColor = {this.props.handleColor} colors={this.props.colors} emails = {this.props.emails}/></div>
                 ) : (
                     <div />
                 )}
