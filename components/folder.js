@@ -40,13 +40,15 @@ class Folders extends Component{
             <div>
             <div className={styles.folders}>
                 {this.props.emails.map((email, idx) => {
-                    if (idx == this.state.selected){
+                if (email.type == "P") {
                         return (
-                            <div key = {idx}>
-                                <button key={idx} className={styles.firstFolder} onClick={() => this.handleClick(idx)}>
-                                    <Image src = {inbox} width = {20} alt = "inbox"/> 
-                                    <p className = {styles.name}> {email.name} </p> 
-                                    <div className={styles.add} onClick = {() => this.handleColorClick(idx)}>
+                            <div key={idx}>
+                                <button style={{
+                                    backgroundColor: email.color,
+                                    }}
+                                    key={idx} className={styles.folder} onClick={() => this.handleClick(idx)}>
+                                    <Image src = {Fold} width = {20} alt = "inbox"/> <p className = {styles.name}> {email.name} </p> 
+                                    <div className={styles.change} onClick = {() => this.handleColorClick(idx)}>
                                         <Image src={threeDots} alt="Settings"/>
                                     </div>
                                 </button>
@@ -56,26 +58,11 @@ class Folders extends Component{
                                         <div />
                                     )}
                             </div>
-                            
-                        )
-                    } else if (email.type == "P") {
-                        return (
-                            <div key={idx}>
-                                <button style={{
-                                    backgroundColor: email.color,
-                                    }}
-                                    key={idx} className={styles.folder} onClick={() => this.handleClick(idx)}>
-                                    <Image src = {Fold} width = {20} alt = "inbox"/> <p className = {styles.name}> {email.name} </p> 
-                                    <div className={styles.add}>
-                                        <Image src={threeDots} alt="Settings"/>
-                                    </div>
-                                </button>
-                            </div>
                         )
                     } else if (email.type == "A") {
                         return (
                             <div key={idx}>
-                                <button key={idx} className={styles.folder} onClick={() => this.props.handleAddClick()}>
+                                <button key={idx} className={styles.add} onClick={() => this.props.handleAddClick()}>
                                     <Add/> <p className = {styles.name}> {email.name}</p>
                                 </button>   
                             </div>

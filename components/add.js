@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 function Add(){
     return (
-        <div className={styles.add}>
+        <div>
             <Image src={add} alt="add" width={10}/>
         </div>
     )
