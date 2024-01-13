@@ -19,9 +19,12 @@ class addFolder extends Component{
         })
     }
 
-    handleInputChange = (e) => {
-        console.log("FUCK ME ");
+    handleFolderChange = (e) => {
         this.props.handleName(e.target.value);
+    };
+
+    handleFromChange = (e) => {
+        this.props.filterName(e.target.value); 
     };
 
     render(){
@@ -30,7 +33,7 @@ class addFolder extends Component{
             <div className={styles.addFolder}>
                 <h1> New Folder </h1>
                 <p>Please enter a new folder name:</p>
-                <input onChange={this.handleInputChange} className={styles.setFolder}></input>
+                <input onChange={this.handleFolderChange} className={styles.setFolder}></input>
                 <p>Folder Color</p>
                 <button className={styles.setColor} onClick = {() => this.handleSetColor()}></button>
                 {(this.state.show) ? (
@@ -41,7 +44,7 @@ class addFolder extends Component{
                 <p>To:</p>
                 <input className={styles.setFolder}></input>
                 <p>From:</p>
-                <input className={styles.setFolder}></input>
+                <input onChange={this.handleFromChange} className={styles.setFolder}></input>
                 <p>Subject:</p>
                 <input className={styles.setFolder}></input>
                 <div className={styles.right}>

@@ -1,7 +1,8 @@
 .main{
   display: flex;
-  background-color: #F6F8FC;
+  background-color: #f7f9fb;
   z-index: -1;
+  height: 2000px; 
 }
 
 .options{

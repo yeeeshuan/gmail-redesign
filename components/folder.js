@@ -11,28 +11,6 @@ class Folders extends Component{
 
     constructor(props){
         super(props);
-        this.state = {
-            selected : 0,
-            colorSelected: false,
-        }
-    }
-
-    handleClick = (idx) =>{
-        this.setState({
-            selected: idx,
-        })
-    }
-
-    handleColorClick = (idx) => {
-        this.setState({
-            colorSelected: idx,
-        })
-    }
-
-    toggleColorSelect = () =>{
-        this.setState({
-            colorSelected: false
-        })
     }
 
     render(){
@@ -46,14 +24,14 @@ class Folders extends Component{
                                 <button style={{
                                     backgroundColor: email.color,
                                     }}
-                                    key={idx} className={styles.folder} onClick={() => this.handleClick(idx)}>
+                                    key={idx} className={styles.folder} onClick={() => this.props.handleClick(idx)}>
                                     <Image src = {Fold} width = {20} alt = "inbox"/> <p className = {styles.name}> {email.name} </p> 
-                                    <div className={styles.change} onClick = {() => this.handleColorClick(idx)}>
+                                    <div className={styles.change} onClick = {() => this.props.handleColorClick(idx)}>
                                         <Image src={threeDots} alt="Settings"/>
                                     </div>
                                 </button>
-                                {(idx === this.state.colorSelected) ? (
-                                        <div> <SelectColor selectClick={this.toggleColorSelect} colors={this.props.colors} index={idx} emails={this.props.emails}/></div>
+                                {(idx === this.props.colorSelected) ? (
+                                        <div> <SelectColor selectClick={this.props.toggleColorSelect} colors={this.props.colors} index={idx} emails={this.props.emails}/></div>
                                     ) : (
                                         <div />
                                     )}

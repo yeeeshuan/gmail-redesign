@@ -20,32 +20,12 @@ class Emails extends Component{
 
     constructor(props){
         super(props);
-        this.state = {
-            emails:[
-                {name: "Ethan Huang", description: "Logo Redesign Design System"}, 
-                {name: "Ethan Huang", description: "Logo Redesign Design System"}, 
-                {name: "Ethan Huang", description: "Logo Redesign Design System"}, 
-                {name: "Ethan Huang", description: "Logo Redesign Design System"}, 
-                {name: "Ethan Huang", description: "Logo Redesign Design System"}, 
-                {name: "Ethan Huang", description: "Logo Redesign Design System"}, 
-                {name: "Ethan Huang", description: "Logo Redesign Design System"}, 
-                {name: "Ethan Huang", description: "Logo Redesign Design System"}, 
-                {name: "Ethan Huang", description: "Logo Redesign Design System"}, 
-                {name: "Ethan Huang", description: "Logo Redesign Design System"}, 
-                {name: "Ethan Huang", description: "Logo Redesign Design System"}, 
-                {name: "Ethan Huang", description: "Logo Redesign Design System"}, 
-                {name: "Ethan Huang", description: "Logo Redesign Design System"}, 
-                {name: "Ethan Huang", description: "Logo Redesign Design System"}, 
-                {name: "Ethan Huang", description: "Logo Redesign Design System"}, 
-                {name: "Ethan Huang", description: "Logo Redesign Design System"}, 
-            ]
-        }
     }
 
     render(){
         return(
             <div className = {styles.projectRow}>
-                {this.state.emails.map((email, idx) => {
+                {this.props.emails.map((email, idx) => {
                     return <Email
                     key={idx}
                     name = {email.name}
