@@ -17,31 +17,31 @@ class Folders extends Component{
         return(
             <div>
             <div className={styles.folders}>
-                {this.props.emails.map((email, idx) => {
-                if (email.type == "P") {
+                {this.props.folders.map((folder, idx) => {
+                if (folder.type == "P") {
                         return (
                             <div key={idx}>
                                 <button style={{
-                                    backgroundColor: email.color,
+                                    backgroundColor: folder.color,
                                     }}
-                                    key={idx} className={styles.folder} onClick={() => this.props.handleClick(idx)}>
-                                    <Image src = {Fold} width = {20} alt = "inbox"/> <p className = {styles.name}> {email.name} </p> 
-                                    <div className={styles.change} onClick = {() => this.props.handleColorClick(idx)}>
+                                    key={idx} className={styles.folder} onClick={() => this.props.handleFolderClick(idx)}>
+                                    <Image src = {Fold} width = {20} alt = "inbox"/> <p className = {styles.name}> {folder.name} </p> 
+                                    <div className={styles.change} onClick = {() => this.props.toggleColorSelect()}>
                                         <Image src={threeDots} alt="Settings"/>
                                     </div>
                                 </button>
-                                {(idx === this.props.colorSelected) ? (
-                                        <div> <SelectColor selectClick={this.props.toggleColorSelect} colors={this.props.colors} index={idx} emails={this.props.emails}/></div>
+                                {(this.props.colorChange && idx === this.props.folderSelected) ? (
+                                        <div> <SelectColor toggleColorSelect={this.props.toggleColorSelect} changeColor={this.props.changeColor} colors={this.props.colors} index={idx} folders={this.props.folders}/></div>
                                     ) : (
                                         <div />
                                     )}
                             </div>
                         )
-                    } else if (email.type == "A") {
+                    } else if (folder.type == "A") {
                         return (
                             <div key={idx}>
                                 <button key={idx} className={styles.add} onClick={() => this.props.handleAddClick()}>
-                                    <Add/> <p className = {styles.name}> {email.name}</p>
+                                    <Add/> <p className = {styles.name}> {folder.name}</p>
                                 </button>   
                             </div>
                         )

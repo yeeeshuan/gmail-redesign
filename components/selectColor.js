@@ -7,23 +7,9 @@ class SelectColor extends Component{
         super(props);
     }
 
-    handleColor = (j,i, emails) => {
-        let temp = emails;
-        temp[j] = {type: temp[j].type, name: temp[j].name, color: this.props.colors[i]}
-        this.setState = {
-            emails: temp,
-        }
-
-    }
-
-    handleToggleClick = (event) => {
-        //event.stopPropagation(); // Prevent the click event from propagating to the parent div
-        this.props.selectClick(); // Use the correct prop name and call the function received from props
-    }
-
     render(){
         return (
-            <div onClick = {() => this.handleToggleClick()} className = {styles.chooseColor}>
+            <div onClick = {() => this.props.toggleColorSelect()} className = {styles.chooseColor}>
                 <p>Folder Color</p>
                 <div className={styles.rowColor}>
                 {this.props.colors.map((color, idx) => {
@@ -34,7 +20,7 @@ class SelectColor extends Component{
                                 backgroundColor: color,
                                 }} 
                                 className={styles.colorButton}
-                                onClick = {() => this.handleColor(this.props.index, idx, this.props.emails)}
+                                onClick = {() => this.props.changeColor(this.props.index, idx)}
                                 >
                                 <p className={styles.sampleLetter}>a</p>
                             </button>

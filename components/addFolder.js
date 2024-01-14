@@ -10,21 +10,27 @@ class addFolder extends Component{
         this.state = {
             colors :["#B6CFF5", "#E8DEF8", "#FFD8E4", "#FFE088", "#CEEF85"],
             show : false,
+            from: "", 
         }
     }
 
-    handleSetColor = () => {
+    //toggles if color pop-up should appear
+    toggleShow = () => {
         this.setState({
             show: !this.state.show
         })
     }
 
+    //handles the name that should be filtered
     handleFolderChange = (e) => {
         this.props.handleName(e.target.value);
     };
 
+    //handles the input from input
     handleFromChange = (e) => {
-        this.props.filterName(e.target.value); 
+        this.setState({
+            from: e.target.value 
+        })
     };
 
     render(){
@@ -35,7 +41,7 @@ class addFolder extends Component{
                 <p>Please enter a new folder name:</p>
                 <input onChange={this.handleFolderChange} className={styles.setFolder}></input>
                 <p>Folder Color</p>
-                <button className={styles.setColor} onClick = {() => this.handleSetColor()}></button>
+                <button className={styles.setColor} onClick = {() => this.toggleShow()}></button>
                 {(this.state.show) ? (
                     <div> <SetColor handleColor = {this.props.handleColor} colors={this.props.colors} emails = {this.props.emails}/></div>
                 ) : (
@@ -48,8 +54,8 @@ class addFolder extends Component{
                 <p>Subject:</p>
                 <input className={styles.setFolder}></input>
                 <div className={styles.right}>
-                    <button className={styles.cancelButton} onClick = {() => this.props.handleAddClose()}> Cancel </button>
-                    <button className={styles.createButton} onClick = {() => this.props.handleAddClose()}> Create </button>
+                    <button className={styles.cancelButton} onClick = {() => this.props.handleAddClose(this.state.from)}> Cancel </button>
+                    <button className={styles.createButton} onClick = {() => this.props.handleAddClose(this.state.from)}> Create </button>
                 </div>
             </div>
             </div>

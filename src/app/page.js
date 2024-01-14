@@ -20,11 +20,17 @@ class Home extends Component{
 
         folderEmails: [],
 
+        //for pop-up
         addPressed: false, 
 
-        selected : 0,
+        //for changing folder color
+        colorChange: false, 
 
-        colorSelected: false,
+        //for selected folder
+        folderSelected : 0,
+
+        //for id of folder to change color
+        folderToChange: 0, 
 
         emails:[
           {name: "Ethan Huang", description: "Updated Components"}, 
@@ -49,69 +55,47 @@ class Home extends Component{
     }
 }
 
-//for sorting emails 
-filterName = (name) => {
-  let temp = this.state.emails;
-  let store = [];
-  let ret = this.state.folderEmails; 
-  let len = temp.length; 
-
-  for (let i = 0; i<len; i++)
-  {
-      let e = this.state.emails[i]
-      if (e.name.toUpperCase() === name.toUpperCase())
-      {
-          store.push(e); 
-      }
-  }
-
-  if (store.length != 0)
-  {
-    this.setState({
-      folderEmails: [...this.state.folderEmails, ...[store]]
-    })
-  }
-
-  console.log(this.state.folderEmails)
-}
-
 //for folder interactions
 
-handleClick = (idx) =>{
+//changes id of folder when clicked
+handleFolderClick = (idx) =>{
   this.setState({
-      selected: idx,
+      folderSelected: idx,
   })
 }
 
-handleColorClick = (idx) => {
-  this.setState({
-      colorSelected: idx,
-  })
-}
-
+//toggles the state of if the color pop-up should appear
 toggleColorSelect = () =>{
   this.setState({
-      colorSelected: false
+      colorChange: !this.state.colorChange
   })
 }
 
-//for add folder pop-up
+//changes the color of folder with respect to folder j and color i
+changeColor = (j,i) => {
+  let temp = this.state.folders;
+  temp[j] = {type: temp[j].type, name: temp[j].name, color: colors[i]}
+  this.setState ({
+      folders: temp,
+  })
 
-  setPressed = (bool) =>{
-    this.setState({
-      addPressed: bool
-    })
-  }
+}
 
+//for add folder pop-up interactions
 
-  handleAddClose = () =>{
-    this.setPressed(false); 
-  }
-
+//sets if pop-up should be activitated
+setPressed = (bool) =>{
+  this.setState({
+    addPressed: bool
+  })
+}
+  //activates addPressed
   onPress = () => {
     this.setPressed(!this.state.addPressed);
   }
 
+  //when the add button is clicked
+  //activates onpressed 
   handleAddClick = () =>{
     this.onPress();
     let store = (this.state.folders);
@@ -123,25 +107,51 @@ toggleColorSelect = () =>{
     })
   }
 
-    handleColor = (c) =>
-    {
-        console.log(c); 
-        let temp = (this.state.folders);
-        (temp[temp.length - 2]).color = c;
-        this.setState({
-          folders: temp
-      })
-    }
 
-    handleName = (n) =>
-    {
-        console.log(n); 
-        let temp = (this.state.folders);
-        (temp[temp.length - 2]).name = n; 
-        this.setState({
-          folders: temp
-      })
-    }
+//handles when folder is created
+//TODO: Change to different types of filtering methods
+handleAddClose = (name) =>{
+  this.setPressed(false); 
+
+  let temp = this.state.emails;
+  let store = [];
+  let len = temp.length; 
+
+  for (let i = 0; i<len; i++)
+  {
+      let e = this.state.emails[i]
+      if (e.name.toUpperCase() === name.toUpperCase())
+      {
+          store.push(e); 
+      }
+  }
+
+  this.setState({
+    folderEmails: [...this.state.folderEmails, ...[store]]
+  })
+}
+
+//handles color presses in pop-up
+handleColor = (c) =>
+{
+    console.log(c); 
+    let temp = (this.state.folders);
+    (temp[temp.length - 2]).color = c;
+    this.setState({
+      folders: temp
+  })
+}
+
+//handles the name of sender/reciever
+handleName = (n) =>
+{
+    console.log(n); 
+    let temp = (this.state.folders);
+    (temp[temp.length - 2]).name = n; 
+    this.setState({
+      folders: temp
+  })
+}
 
   render() {
     return (
@@ -153,19 +163,22 @@ toggleColorSelect = () =>{
           <section className={styles.emails}>
               <input className={styles.search} type="text" id="fname" name="fname"/>
               <div className={styles.folders}>
-                <Folders handleAddActive={this.onPress} handleAddClick={this.handleAddClick} onPress={this.handleAddClose} colors = {colors} emails = {this.state.folders} selected = {this.state.selected} colorSelected ={this.state.colorSelected} handleClick={this.handleClick} handleColorClick={this.handleColorClick} handleColorSelect={this.handleColorSelect}/>
+                <Folders handleAddActive={this.onPress} handleAddClick={this.handleAddClick} onPress={this.handleAddClose} 
+                colors = {colors} folders = {this.state.folders} 
+                colorChange = {this.state.colorChange} folderSelected = {this.state.folderSelected}
+                handleFolderClick={this.handleFolderClick} toggleColorSelect={this.toggleColorSelect} changeColor={this.changeColor}/>
               </div>
               {this.state.addPressed? 
                 <div className = {styles.center}> 
-                  <AddFolder emails = {this.state.folders} colors = {colors} handleColor={this.handleColor} handleName={this.handleName} handleAddClose={this.handleAddClose} folderEmails={this.state.folderEmails} filterName = {this.filterName}/> 
+                  <AddFolder emails = {this.state.folders} colors = {colors} handleColor={this.handleColor} handleName={this.handleName} handleAddClose={this.handleAddClose} folderEmails={this.state.folderEmails}/> 
                 </div> 
                 : 
                 <div/>}
               {
-                (this.state.selected == 0)?
+                (this.state.folderSelected == 0)?
                   <Emails emails = {this.state.emails} />
                 :
-                  <Emails emails = {(this.state.folderEmails[this.state.selected - 1])}/>
+                  <Emails emails = {(this.state.folderEmails[this.state.folderSelected - 1])}/>
               }
           </section>
       </main>
