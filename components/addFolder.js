@@ -47,8 +47,8 @@ class addFolder extends Component{
                 ) : (
                     <div />
                 )}
-                <p>To:</p>
-                <input className={styles.setFolder}></input>
+                {/* <p>To:</p>
+                <input className={styles.setFolder}></input> */}
                 <p>From:</p>
                 <input onChange={this.handleFromChange} className={styles.setFolder}></input>
                 <p>Subject:</p>
