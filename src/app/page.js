@@ -153,6 +153,16 @@ handleName = (n) =>
   })
 }
 
+deleteFolder = (id) =>
+{
+  let temp = (this.state.folders); 
+  temp.splice(id, id); 
+  this.setState({
+    folders: temp
+})
+
+}
+
   render() {
     return (
       <main className={styles.main}>
@@ -163,7 +173,7 @@ handleName = (n) =>
           <section className={styles.emails}>
               <input className={styles.search} type="text" id="fname" name="fname"/>
               <div className={styles.folders}>
-                <Folders handleAddActive={this.onPress} handleAddClick={this.handleAddClick} onPress={this.handleAddClose} 
+                <Folders deleteFolder={this.deleteFolder} handleAddActive={this.onPress} handleAddClick={this.handleAddClick} onPress={this.handleAddClose} 
                 colors = {colors} folders = {this.state.folders} 
                 colorChange = {this.state.colorChange} folderSelected = {this.state.folderSelected}
                 handleFolderClick={this.handleFolderClick} toggleColorSelect={this.toggleColorSelect} changeColor={this.changeColor}/>

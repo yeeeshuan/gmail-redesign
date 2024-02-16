@@ -29,7 +29,7 @@ class SelectColor extends Component{
                 )}
                 </div>
                 <div className={styles.right}>
-                    <button className={styles.cancelButton}> Remove Color</button>
+                    <button onClick={()=>this.props.deleteFolder(this.props.index)}className={styles.cancelButton}> Remove Folder</button>
                 </div>
             </div>
         )

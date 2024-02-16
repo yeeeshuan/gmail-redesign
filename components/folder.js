@@ -31,7 +31,7 @@ class Folders extends Component{
                                     </div>
                                 </button>
                                 {(this.props.colorChange && idx === this.props.folderSelected) ? (
-                                        <div> <SelectColor toggleColorSelect={this.props.toggleColorSelect} changeColor={this.props.changeColor} colors={this.props.colors} index={idx} folders={this.props.folders}/></div>
+                                        <div> <SelectColor deleteFolder={this.props.deleteFolder} toggleColorSelect={this.props.toggleColorSelect} changeColor={this.props.changeColor} colors={this.props.colors} index={idx} folders={this.props.folders}/></div>
                                     ) : (
                                         <div />
                                     )}
