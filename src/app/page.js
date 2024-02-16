@@ -156,7 +156,9 @@ handleName = (n) =>
 deleteFolder = (id) =>
 {
   let temp = (this.state.folders); 
-  temp.splice(id, id); 
+  console.log("BEFORE", temp); 
+  temp.splice(id, 1); 
+  console.log("AFTER", temp); 
   this.setState({
     folders: temp
 })
